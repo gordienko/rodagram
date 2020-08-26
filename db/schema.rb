@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_195525) do
     t.integer "rates_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["average_rating", "rates_count"], name: "index_posts_on_average_rating_and_rates_count"
     t.index ["average_rating"], name: "index_posts_on_average_rating"
     t.index ["creator_ip"], name: "index_posts_on_creator_ip"
     t.index ["user_id"], name: "index_posts_on_user_id"
