@@ -1,0 +1,14 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
+development:
+  <<: *default
+  database: rodagram_development
+
+test:
+  <<: *default
+  database: rodagram_test
+
+production:
+  <<: *default
