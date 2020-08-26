@@ -109,7 +109,7 @@ RSpec.describe App, roda: :app do
     end
 
     describe "GET /addresses" do
-      it "return ip addresses statictics" do
+      it "return ip addresses statistics" do
         get "/addresses"
         expect(last_response.status).to eq 200
         json = JSON.parse(last_response.body)
