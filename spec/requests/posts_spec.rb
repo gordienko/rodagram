@@ -59,7 +59,7 @@ RSpec.describe App, roda: :app do
       it "return ID of a random post" do
         get "/random"
         expect(last_response.status).to eq 200
-        post_id = JSON.parse(last_response.body).dig('id')
+        post_id = JSON.parse(last_response.body)['id']
         expect(post_id).to be_a_kind_of(Integer)
       end
 
@@ -67,7 +67,7 @@ RSpec.describe App, roda: :app do
         get "/post/#{post_id}"
         expect(last_response.status).to eq 200
         post_json = JSON.parse(last_response.body)
-        expect(post_json.dig('id')).to eq(post_id)
+        expect(post_json['id']).to eq(post_id)
       end
 
       rate_value = (1..5).to_a.sample
@@ -75,8 +75,8 @@ RSpec.describe App, roda: :app do
         post "/post/#{post_id}/rate", { value: rate_value}
         expect(last_response.status).to eq 200
         json = JSON.parse(last_response.body)
-        expect(json.dig('rates_count')).to eq(post_json.dig('rates_count') + 1)
-        expect(json.dig('sum_rating')).to eq(post_json.dig('sum_rating') + rate_value)
+        expect(json['rates_count']).to eq(post_json['rates_count'] + 1)
+        expect(json['sum_rating']).to eq(post_json['sum_rating'] + rate_value)
       end
 
       it "return rate < 1 validation failed" do
@@ -113,7 +113,7 @@ RSpec.describe App, roda: :app do
         get "/addresses"
         expect(last_response.status).to eq 200
         json = JSON.parse(last_response.body)
-        expect(json.last.dig('authors').count).to be > 1
+        expect(json.last['authors'].count).to be > 1
       end
 
     end
