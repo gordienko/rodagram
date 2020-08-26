@@ -92,6 +92,15 @@ RSpec.describe App, roda: :app do
         json = JSON.parse(last_response.body)
         expect(json['error']).to eq "Validation failed: Value must be less than or equal to 5"
       end
+
+      it "return couldn't find post" do
+        not_found_post_id = 10000000000000000000000000000000
+        post "/post/#{not_found_post_id}/rate", { value: 5}
+        expect(last_response.status).to eq 404
+        json = JSON.parse(last_response.body)
+        expect(json['error']).to eq "Couldn't find Post with 'id'=#{not_found_post_id}"
+      end
+
     end
 
     describe "GET /top" do
