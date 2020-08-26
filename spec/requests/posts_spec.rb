@@ -94,7 +94,7 @@ RSpec.describe App, roda: :app do
       end
 
       it "return couldn't find post" do
-        not_found_post_id = 10000000000000000000000000000000
+        not_found_post_id = 10**50
         post "/post/#{not_found_post_id}/rate", { value: 5}
         expect(last_response.status).to eq 404
         json = JSON.parse(last_response.body)
